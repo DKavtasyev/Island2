@@ -3,12 +3,13 @@ package com.javarush.island.kavtasyev.util;
 import com.javarush.island.kavtasyev.abstraction.Config;
 import com.javarush.island.kavtasyev.entity.Island;
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
+import com.javarush.island.kavtasyev.entity.creatures.animals.herbivorous.Caterpillar;
 import com.javarush.island.kavtasyev.entity.creatures.plants.Plant;
 import com.javarush.island.kavtasyev.entity.island.Cell;
 import com.javarush.island.kavtasyev.exception.CreateObjectException;
 import com.javarush.island.kavtasyev.factory.CreaturesFactory;
 import com.javarush.island.kavtasyev.repository.CreaturePopulation;
-import com.javarush.island.kavtasyev.repository.ListOfCreaturesTypes;
+import com.javarush.island.kavtasyev.repository.SetOfCreaturesTypes;
 
 import java.io.IOException;
 
@@ -27,7 +28,7 @@ public class Spawner
 
 	public void spawnIslandCreatures() throws CreateObjectException, IOException
 	{
-		for(Class<? extends Creature> creatureClass: ListOfCreaturesTypes.listOfCreaturesTypes)
+		for(Class<? extends Creature> creatureClass: SetOfCreaturesTypes.SET_OF_CREATURES_TYPES)
 		{
 			int x = GetRandom.RANDOM.nextInt(width);
 			int y = GetRandom.RANDOM.nextInt(height);
@@ -43,7 +44,7 @@ public class Spawner
 			{
 				Creature creature = CreaturesFactory.getInstance(creatureClass, cells[y][x]);
 
-				if(creature instanceof Plant)
+				if(creature instanceof Plant || creature instanceof Caterpillar)
 				{
 					int randomX = GetRandom.RANDOM.nextInt(width - 1);
 					int randomY = GetRandom.RANDOM.nextInt(height - 1);

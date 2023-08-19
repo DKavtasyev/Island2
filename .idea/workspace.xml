@@ -4,106 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d7b88c6f-110b-42ad-bcba-e570a1568e5a" name="Changes" comment="Версия 0.1. Создание проекта.">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/abstraction/Config.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/app/Application.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/IslandConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Bear.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Boa.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Boar.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Buffalo.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Caterpillar.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Deer.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Duck.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Eagle.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Fox.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Goat.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Horse.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Mouse.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Rabbit.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Sheep.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/animals/Wolf.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/creatures/plants/Plant.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/constants/Conversation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/constants/Paths.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/constants/Text.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/controller/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/Coordinates.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/CustomData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/Island.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/Result.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/Statistics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/Creature.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/Animal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/Herbivorous.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/Omnivorous.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/Predator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/herbivorous/Buffalo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/herbivorous/Caterpillar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/herbivorous/Deer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/herbivorous/Duck.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/herbivorous/Goat.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/herbivorous/Horse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/herbivorous/Mouse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/herbivorous/Rabbit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/herbivorous/Sheep.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/omnivorous/Bear.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/omnivorous/Boar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/predators/Boa.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/predators/Eagle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/predators/Fox.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/predators/Wolf.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/plants/Plant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/island/Cell.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/exception/CreateObjectException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/exception/ParametersException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/factory/CreaturesFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/repository/CreaturePopulation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/repository/ListOfCreaturesTypes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/repository/ResultCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Breeding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/CreatureParametersManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/DeadsCollector.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Feeding.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/GetRandom.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/IslandScheduler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/MonitoringStatistics.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Moving.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Spawner.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Timeable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/ValidationCustomData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/view/View.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/view/consoleview/ConsoleView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/bear.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/boa.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/boar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/buffalo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/caterpillar.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/cow.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/deer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/duck.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/eagle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/fox.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/goat.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/horse.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/mouse.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/plant.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/rabbit.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/sheep.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/icon/wolf.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/img/screen.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/IslandConfigPane.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/IslandRootLayout.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/view/IslandStatisticsLayout.fxml" afterDir="false" />
+    <list default="true" id="d7b88c6f-110b-42ad-bcba-e570a1568e5a" name="Changes" comment="Версия 1.0. Проект с консольным управлением готов.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/IslandConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/config/IslandConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/constants/Conversation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/constants/Conversation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/Coordinates.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/Coordinates.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/Island.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/Island.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/Statistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/Statistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/Animal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/creatures/animals/Animal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/island/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/entity/island/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/factory/CreaturesFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/factory/CreaturesFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/repository/ListOfCreaturesTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/repository/SetOfCreaturesTypes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Breeding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Breeding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/CreatureParametersManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/CreatureParametersManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/DeadsCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/DeadsCollector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Feeding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Feeding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/IslandScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/IslandScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/MonitoringStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/MonitoringStatistics.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Moving.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Moving.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Spawner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/Spawner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/ValidationCustomData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/ValidationCustomData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/view/consoleview/ConsoleView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/view/consoleview/ConsoleView.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,25 +108,34 @@
       <option name="presentableId" value="Default" />
       <updated>1691498733214</updated>
     </task>
+    <task id="LOCAL-00001" summary="Версия 0.1. Создание проекта.">
+      <created>1692335108769</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1692335108769</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Версия 1.0. Создание проекта." />
     <MESSAGE value="Версия 0.1. Создание проекта." />
-    <option name="LAST_COMMIT_MESSAGE" value="Версия 0.1. Создание проекта." />
+    <MESSAGE value="Версия 1.0. Проект с консольным управлением готов." />
+    <option name="LAST_COMMIT_MESSAGE" value="Версия 1.0. Проект с консольным управлением готов." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/DeadsCollector.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="11" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/Test4.java</url>
+          <line>62</line>
+          <option name="timeStamp" value="25" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/CreatureParametersManager.java</url>
-          <line>24</line>
-          <option name="timeStamp" value="13" />
+          <url>file://$PROJECT_DIR$/src/main/java/com/javarush/island/kavtasyev/util/MonitoringStatistics.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="32" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -8,14 +8,14 @@ import com.javarush.island.kavtasyev.entity.island.Cell;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.TimeUnit;
 
 public class Feeding
 {
 	private static Cell currentCell;
-	private static HashMap<Class<? extends Creature>, HashSet<Creature>> cellCreatures;
+	private static ConcurrentHashMap<Class<? extends Creature>, Set<Creature>> cellCreatures;
 
 	private Feeding()
 	{
@@ -54,7 +54,7 @@ public class Feeding
 		try
 		{
 			if (cellCreatures.get(victim.getClass()).contains(victim)
-					&& victim.getLock().tryLock(IslandConfig.dayLength / 2, TimeUnit.MILLISECONDS))				// Если жертва не убежала в другую локацию и если лок жертвы удалось получить
+					&& victim.getLock().tryLock(IslandConfig.dayLength / 500, TimeUnit.MILLISECONDS))				// Если жертва не убежала в другую локацию и если лок жертвы удалось получить
 			{
 				if (GetRandom.RANDOM.nextInt(100) < foodMap.get(victim.getClass()))								// то тогда пытаемся поймать жертву.
 				{

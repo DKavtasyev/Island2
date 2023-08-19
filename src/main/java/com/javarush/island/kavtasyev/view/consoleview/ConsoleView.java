@@ -88,7 +88,7 @@ public class ConsoleView implements View
 				break;
 			System.out.println(Conversation.INCORRECT_DAY_LENGTH);
 		}
-		return dayLength;
+		return dayLength * 1000;
 	}
 
 	@Override

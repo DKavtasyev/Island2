@@ -3,12 +3,13 @@ package com.javarush.island.kavtasyev.entity;
 import com.javarush.island.kavtasyev.constants.Paths;
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
 import com.javarush.island.kavtasyev.entity.island.Cell;
-import com.javarush.island.kavtasyev.repository.ListOfCreaturesTypes;
+import com.javarush.island.kavtasyev.repository.SetOfCreaturesTypes;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Collections;
 import java.util.HashSet;
 
 public class Island
@@ -44,7 +45,7 @@ public class Island
 				String s1 = s.replaceAll("[\\\\/]", ".").substring(14, s.length() - 5);
 				System.out.println("class " + s1);
 				Class<?> clazz = Class.forName(s1);
-				ListOfCreaturesTypes.listOfCreaturesTypes.add((Class<? extends Creature>) clazz);
+				SetOfCreaturesTypes.SET_OF_CREATURES_TYPES.add((Class<? extends Creature>) clazz);
 			}
 		}
 	}
@@ -61,9 +62,9 @@ public class Island
 			for (int x = 0; x < width; x++)
 			{
 				cells[y][x] = new Cell(new Coordinates(x, y), cells);
-				for(Class<? extends Creature> clazz : ListOfCreaturesTypes.listOfCreaturesTypes)						// TODO рассмотреть вынесение listOfCreaturesTypes из отдельного класса в класс Island
+				for(Class<? extends Creature> clazz : SetOfCreaturesTypes.SET_OF_CREATURES_TYPES)						// TODO рассмотреть вынесение listOfCreaturesTypes из отдельного класса в класс Island
 				{
-					cells[y][x].getCellCreatures().put(clazz, new HashSet<>());
+					cells[y][x].getCellCreatures().put(clazz, Collections.synchronizedSet(new HashSet<>()));
 				}
 			}
 		}

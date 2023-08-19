@@ -1,7 +1,7 @@
 package com.javarush.island.kavtasyev.entity;
 
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
-import com.javarush.island.kavtasyev.repository.ListOfCreaturesTypes;
+import com.javarush.island.kavtasyev.repository.SetOfCreaturesTypes;
 
 import java.util.HashMap;
 
@@ -16,7 +16,7 @@ public class Statistics
 	{
 		allCreaturesPopulation = new HashMap<>();
 		population = 0;
-		for(Class<? extends Creature> clazz : ListOfCreaturesTypes.listOfCreaturesTypes)
+		for(Class<? extends Creature> clazz : SetOfCreaturesTypes.SET_OF_CREATURES_TYPES)
 			allCreaturesPopulation.put(clazz, 0);
 	}
 

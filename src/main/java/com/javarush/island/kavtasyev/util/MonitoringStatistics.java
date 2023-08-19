@@ -5,10 +5,11 @@ import com.javarush.island.kavtasyev.entity.Statistics;
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
 import com.javarush.island.kavtasyev.entity.creatures.plants.Plant;
 import com.javarush.island.kavtasyev.entity.island.Cell;
-import com.javarush.island.kavtasyev.repository.ListOfCreaturesTypes;
+import com.javarush.island.kavtasyev.repository.SetOfCreaturesTypes;
 
 import java.time.Instant;
-import java.util.HashSet;
+import java.util.HashMap;
+import java.util.Set;
 import java.util.concurrent.Callable;
 
 public class MonitoringStatistics implements Callable<Statistics>, Timeable
@@ -25,18 +26,19 @@ public class MonitoringStatistics implements Callable<Statistics>, Timeable
 		Instant start = Instant.now();
 		Cell[][] cells = island.getCells();
 		Statistics statistics = new Statistics();
-		HashSet<Creature> creaturesOfCertainSpeciesInCell;
-		for (Cell[] lineOfCells : cells)
+		Set<Creature> creaturesOfCertainSpeciesInCell;
+		synchronized (island)
 		{
-			for (Cell value : lineOfCells)
+			for (Cell[] lineOfCells : cells)
 			{
-				synchronized (value)
+				for (Cell value : lineOfCells)
 				{
-					for (Class<? extends Creature> clazz : ListOfCreaturesTypes.listOfCreaturesTypes)
+					for (Class<? extends Creature> clazz : SetOfCreaturesTypes.SET_OF_CREATURES_TYPES)
 					{
 						creaturesOfCertainSpeciesInCell = value.getCellCreatures().get(clazz);
-						int number = statistics.getAllCreaturesPopulation().get(clazz);
-						statistics.getAllCreaturesPopulation().put(clazz, number + creaturesOfCertainSpeciesInCell.size());
+						HashMap<Class<? extends Creature>, Integer> allCreaturesPopulation = statistics.getAllCreaturesPopulation();
+						int quantity = allCreaturesPopulation.get(clazz);
+						allCreaturesPopulation.put(clazz, quantity + creaturesOfCertainSpeciesInCell.size());
 						if (clazz != Plant.class)
 							statistics.setPopulation(statistics.getPopulation() + creaturesOfCertainSpeciesInCell.size());
 					}

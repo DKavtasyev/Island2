@@ -34,11 +34,11 @@ public class Moving
 		}
 
 		if (thisCreature instanceof Predator)
-			thisCreature.setWantToEat(thisCreature.getWantToEat() * 1.1);												// Если животное - хищник, то оно тратит на перемещение 10 % энергии.
+			thisCreature.setWantToEat(Math.min(thisCreature.getWantToEat() * 1.05, thisCreature.getMassOfFood()));		// Если животное - хищник, то оно тратит на перемещение 10 % энергии.
 		else if (thisCreature instanceof Omnivorous)
-			thisCreature.setWantToEat(thisCreature.getWantToEat() * 1.08);												// Если животное - всеядное, то оно тратит на перемещение 8 % энергии.
+			thisCreature.setWantToEat(Math.min(thisCreature.getWantToEat() * 1.04, thisCreature.getMassOfFood()));		// Если животное - всеядное, то оно тратит на перемещение 8 % энергии.
 		else if (thisCreature instanceof Herbivorous)
-			thisCreature.setWantToEat(thisCreature.getWantToEat() * 1.02);												// Если животное - травоядное, то оно тратит на перемещение 2 % энергии
+			thisCreature.setWantToEat(Math.min(thisCreature.getWantToEat() * 1.02, thisCreature.getMassOfFood()));		// Если животное - травоядное, то оно тратит на перемещение 2 % энергии
 		System.out.printf("Животное %1$s переместилось из ячейки %2$s в ячейку %3$s%n", thisCreature.getClass().getSimpleName() + thisCreature.hashCode(), oldCell.getCoordinates().toString(), newCell.getCoordinates().toString());
 	}
 }

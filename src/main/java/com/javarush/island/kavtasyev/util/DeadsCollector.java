@@ -1,14 +1,15 @@
 package com.javarush.island.kavtasyev.util;
 
+import com.javarush.island.kavtasyev.entity.Coordinates;
 import com.javarush.island.kavtasyev.entity.Island;
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
 import com.javarush.island.kavtasyev.entity.creatures.animals.Animal;
 import com.javarush.island.kavtasyev.entity.creatures.plants.Plant;
 import com.javarush.island.kavtasyev.entity.island.Cell;
-import com.javarush.island.kavtasyev.repository.ListOfCreaturesTypes;
+import com.javarush.island.kavtasyev.repository.SetOfCreaturesTypes;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class DeadsCollector implements Runnable
 {
@@ -23,18 +24,42 @@ public class DeadsCollector implements Runnable
 	public void run()
 	{
 		Cell[][] cells = island.getCells();
+		ArrayList<Coordinates> coordinates = new ArrayList<>();
+
 		for (int y = 0; y < island.getCustomData().getHeight(); y++)
 		{
 			for (int x = 0; x < island.getCustomData().getWidth(); x++)
 			{
-				for(Class<? extends Creature> clazz : ListOfCreaturesTypes.listOfCreaturesTypes)
+				coordinates.add(new Coordinates(x, y));
+			}
+		}
+
+		Collections.shuffle(coordinates);
+
+		for(Coordinates coordinate : coordinates)
+		{
+			synchronized (cells[coordinate.getY()][coordinate.getX()])
+			{
+				for(Class<? extends Creature> clazz : SetOfCreaturesTypes.SET_OF_CREATURES_TYPES)
 				{
-					HashMap<Class<? extends Creature>, HashSet<Creature>> cellCreatures = cells[y][x].getCellCreatures();
-					HashSet<Creature> cellCreaturesOfSpecies = cellCreatures.get(clazz);
-					synchronized (cellCreaturesOfSpecies)
+					ConcurrentHashMap<Class<? extends Creature>, Set<Creature>> cellCreatures = cells[coordinate.getY()][coordinate.getX()].getCellCreatures();
+					Set<Creature> cellCreaturesOfSpecies = cellCreatures.get(clazz);
+					Iterator<Creature> it = cellCreaturesOfSpecies.iterator();
+					while(it.hasNext())
 					{
-						cellCreaturesOfSpecies.removeIf(creature -> (creature instanceof Animal) && (!creature.isAlive() || creature.getAge() >= creature.getMaxAge()));
-						cellCreaturesOfSpecies.removeIf(creature -> (creature instanceof Plant) && (!creature.isAlive() || creature.getWeight() == 0));
+						Creature creature = it.next();
+						if (creature == null)
+							it.remove();
+						else if (creature instanceof Animal)
+						{
+							if (!creature.isAlive() || creature.getAge() >= creature.getMaxAge())
+								it.remove();
+						}
+						else if (creature instanceof Plant)
+						{
+							if (!creature.isAlive() || creature.getWeight() == 0)
+								it.remove();
+						}
 					}
 				}
 			}

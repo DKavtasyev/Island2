@@ -3,11 +3,9 @@ package com.javarush.island.kavtasyev.util;
 import com.javarush.island.kavtasyev.config.IslandConfig;
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
 import com.javarush.island.kavtasyev.entity.island.Cell;
-import com.javarush.island.kavtasyev.exception.CreateObjectException;
 import com.javarush.island.kavtasyev.factory.CreaturesFactory;
 
-import java.io.IOException;
-import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class Breeding
@@ -21,13 +19,13 @@ public class Breeding
 	public static Creature availablePair(Creature thisCreature) throws InterruptedException
 	{
 		currentCell = thisCreature.getCurrentCell();
-		HashSet<Creature> relatives = currentCell.getCellCreatures().get(thisCreature.getClass());						// Получаем ссылку на множество всех сородичей в текущей локации
+		Set<Creature> relatives = currentCell.getCellCreatures().get(thisCreature.getClass());						// Получаем ссылку на множество всех сородичей в текущей локации
 
 		for (Creature pair : relatives)
 		{
 			if (pair == thisCreature)																					// С собой размножиться не получится
 				continue;
-			if( pair.getLock().tryLock(IslandConfig.dayLength / 10, TimeUnit.MILLISECONDS) )						// Если получилось занять животное pair, проверяем, подходит ли оно
+			if( pair.getLock().tryLock(IslandConfig.dayLength / 500, TimeUnit.MILLISECONDS) )					// Если получилось занять животное pair, проверяем, подходит ли оно
 			{
 				if (pair.isMale() != thisCreature.isMale() && !pair.isBred() && pair.getAge() > pair.getMatureAge())	// Проверка, подходящая ли особь для размножения. Если да, тогда пытаемся её занять и возвращаем его
 					return pair;
@@ -39,16 +37,15 @@ public class Breeding
 		return null;																									// Если подходящего животного не нашлось, тогда возвращаем null
 	}
 
-	public static boolean breed(Creature thisCreature, Creature pair) throws CreateObjectException, IOException
+	public static boolean breed(Creature thisCreature, Creature pair)
 	{
-		currentCell = thisCreature.getCurrentCell();
-
 		if (pair == null)																								// Проверка на то, нашлась ли пара для размножения
 			return false;																								// Если не нашлась, то возвращаем false
 
 		try																												// Если нашлась, то размножаемся с ней
 		{
-			Creature newCreature = CreaturesFactory.getInstance(thisCreature.getClass(), currentCell);
+			currentCell = thisCreature.getCurrentCell();
+			Creature newCreature = CreaturesFactory.clone(thisCreature);
 			newCreature.setAge(0);
 			newCreature.setWantToEat(0);
 			pair.setBred(true);
@@ -59,7 +56,8 @@ public class Breeding
 		}
 		finally
 		{
-			pair.getLock().unlock();																					// Отпускаем пару после размножения
+			if (pair.getLock().isHeldByCurrentThread())
+				pair.getLock().unlock();																					// Отпускаем пару после размножения
 		}
 	}
 }

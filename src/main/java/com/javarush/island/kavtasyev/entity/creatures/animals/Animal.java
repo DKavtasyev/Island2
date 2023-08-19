@@ -11,11 +11,13 @@ import com.javarush.island.kavtasyev.util.Moving;
 import javafx.scene.image.Image;
 
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.ReentrantLock;
 
-public abstract class Animal implements Creature
+public abstract class Animal implements Creature, Cloneable
 {
 	public double maxWeight;
 	public int speed;
@@ -26,6 +28,7 @@ public abstract class Animal implements Creature
 	public int maxEnergy;
 	public int maxNumberPerCell;
 	public String imagePath;
+
 
 	public double weight;
 	public boolean isAlive;
@@ -49,20 +52,19 @@ public abstract class Animal implements Creature
 	{
 		try
 		{
-			boolean lockIsCaptured = this.lock.tryLock(IslandConfig.dayLength / 20, TimeUnit.MILLISECONDS);		// запрос на захват лока текущего животного
+			boolean lockIsCaptured = this.lock.tryLock(IslandConfig.dayLength / 500, TimeUnit.MILLISECONDS);		// запрос на захват лока текущего животного
 			if (lockIsCaptured)
 				decideWhatToDo();
+			else
+				System.err.println("*ProVoLokA************************************* Животное заблокировано!!! **************************************");
 		}
-		catch (CreateObjectException e)
+		catch (CreateObjectException | InterruptedException | IOException e)
 		{
 			e.printStackTrace();
 		}
 		catch (NullPointerException ignored)																			// Если объект уже удалён, то прекращаем выполнение таска. Значит его съели
 		{
-		}
-		catch (InterruptedException | IOException e)
-		{
-			throw new RuntimeException(e);
+			System.err.println("*ProVoLokA************************************* Животное равно null!!! **************************************");
 		}
 		finally
 		{
@@ -74,7 +76,10 @@ public abstract class Animal implements Creature
 	private void decideWhatToDo() throws InterruptedException, CreateObjectException, IOException
 	{
 		if(!isAlive)
+		{
+			System.err.println("*ProVoLokA************************************* Мёртвое животное!!! **************************************");
 			return;
+		}
 		if (wantToEat < massOfFood * 0.5)													// Если хочет есть больше, чем на 50 %, то в первую очередь нужно поесть.
 		{
 			if (Feeding.foodIsAvailable(this))									// Если еда доступна, то тогда пытаемся её есть.
@@ -270,6 +275,37 @@ public abstract class Animal implements Creature
 	public HashMap<Class<? extends Creature>, Integer> getFoodMap()
 	{
 		return foodMap;
+	}
+
+	@Override
+	public Creature clone()
+	{
+		try
+		{
+			Class<? extends Creature> clazz = this.getClass();
+			Constructor<? extends Creature> constructor = clazz.getConstructor();
+			Animal newInstance = (Animal) constructor.newInstance();
+			newInstance.maxWeight = this.maxWeight;
+			newInstance.speed = this.speed;
+			newInstance.maxSpeed = this.maxSpeed;
+			newInstance.massOfFood = this.massOfFood;
+			newInstance.matureAge = this.matureAge;
+			newInstance.maxAge = this.maxAge;
+			newInstance.maxEnergy = this.maxEnergy;
+			newInstance.maxNumberPerCell = this.maxNumberPerCell;
+			newInstance.imagePath = this.imagePath;
+			newInstance.weight = this.weight;
+			newInstance.isAlive = true;
+			newInstance.energy = this.energy;
+			newInstance.isBred = false;
+			return newInstance;
+		}
+		catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
+			   InvocationTargetException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
 

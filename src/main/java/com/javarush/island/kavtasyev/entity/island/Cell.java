@@ -4,14 +4,14 @@ import com.javarush.island.kavtasyev.entity.Coordinates;
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Cell
 {
 	private final Coordinates coordinates;
 	private final Cell[][] allCells;
-	private HashMap<Class<? extends Creature>, HashSet<Creature>> cellCreatures = new HashMap<>();
+	private final ConcurrentHashMap<Class<? extends Creature>, Set<Creature>> cellCreatures = new ConcurrentHashMap<>();
 	private final ArrayList<Cell> neighbors = new ArrayList<>();
 
 	public Cell(Coordinates coordinates, Cell[][] allCells)
@@ -25,7 +25,7 @@ public class Cell
 		return neighbors;
 	}
 
-	public HashMap<Class<? extends Creature>, HashSet<Creature>> getCellCreatures()
+	public ConcurrentHashMap<Class<? extends Creature>, Set<Creature>> getCellCreatures()
 	{
 		return cellCreatures;
 	}

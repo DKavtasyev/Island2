@@ -82,4 +82,15 @@ public class CreaturesFactory
 			creature.setWantToEat(creature.getMassOfFood() == 0 ? 0 : RANDOM.nextDouble( creature.getMassOfFood() / 2, creature.getMassOfFood() ));
 		}
 	}
+
+	public static Creature clone(Creature creature)
+	{
+		Creature newInstance = ((Animal) creature).clone();
+
+		Image image = getImageForCreature(newInstance);
+		newInstance.setImage(image);
+		newInstance.setCurrentCell(creature.getCurrentCell());
+		setParameters(newInstance);
+		return newInstance;
+	}
 }

@@ -51,13 +51,13 @@ public class ValidationCustomData
 	public static long validateDayLength(String dayLength)
 	{
 		if (dayLength.equals(""))
-			return IslandConfig.dayLength;
+			return IslandConfig.dayLength / 1000;
 
 		long n;
 		try
 		{
 			n = Long.parseLong(dayLength);
-			if (n >= 10 && n <= 10_000)
+			if (n >= 1 && n <= 10)
 				return n;
 			else
 				return -1;
