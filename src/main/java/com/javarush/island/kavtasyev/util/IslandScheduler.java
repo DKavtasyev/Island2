@@ -86,6 +86,28 @@ public class IslandScheduler implements Timeable
 		}
 	};
 
+	private void manageCreatureLife() throws InterruptedException
+	{
+		manageCreatureLifeParameters();
+		collectDeadCreatures();
+	}
+
+	private void manageCreatureLifeParameters() throws InterruptedException
+	{
+		CreatureParametersManager parametersManager = new CreatureParametersManager(island);
+		Thread parametersManagerThread = new Thread(parametersManager, "CreatureParametersManager");
+		parametersManagerThread.start();
+		parametersManagerThread.join();
+	}
+
+	private void collectDeadCreatures() throws InterruptedException
+	{
+		DeadsCollector deadsCollector = new DeadsCollector(island);
+		Thread deadsCollectorThread = new Thread(deadsCollector, "DeadsCollector");
+		deadsCollectorThread.start();
+		deadsCollectorThread.join();
+	}
+
 	private void downloadActionsOfTheDay(ScheduledThreadPoolExecutor executor)
 	{
 		Cell[][] cells = island.getCells();
@@ -153,30 +175,8 @@ public class IslandScheduler implements Timeable
 	{
 		MonitoringStatistics monitoringStatistics = new MonitoringStatistics(island);
 		FutureTask<Statistics> futureTask = new FutureTask<>(monitoringStatistics);
-		Thread countStatistics = new Thread(futureTask);
+		Thread countStatistics = new Thread(futureTask, "StatisticsCounter");
 		countStatistics.start();
 		return futureTask.get();
-	}
-
-	private void manageCreatureLife() throws InterruptedException
-	{
-		manageCreatureLifeParameters();
-		collectDeadCreatures();
-	}
-
-	private void manageCreatureLifeParameters() throws InterruptedException
-	{
-		CreatureParametersManager parametersManager = new CreatureParametersManager(island);
-		Thread parametersManagerThread = new Thread(parametersManager);
-		parametersManagerThread.start();
-		parametersManagerThread.join();
-	}
-
-	private void collectDeadCreatures() throws InterruptedException
-	{
-		DeadsCollector deadsCollector = new DeadsCollector(island);
-		Thread deadsCollectorThread = new Thread(deadsCollector);
-		deadsCollectorThread.start();
-		deadsCollectorThread.join();
 	}
 }

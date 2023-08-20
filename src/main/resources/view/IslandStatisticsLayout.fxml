@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javarush.island.kavtasyev.controller.IslandRootLayoutController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javarush.island.kavtasyev.view.guiview.controller.IslandRootLayoutController">
    <children>
       <BarChart legendSide="TOP" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0">
         <xAxis>

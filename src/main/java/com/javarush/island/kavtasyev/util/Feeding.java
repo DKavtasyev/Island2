@@ -5,6 +5,7 @@ import com.javarush.island.kavtasyev.entity.creatures.Creature;
 import com.javarush.island.kavtasyev.entity.creatures.animals.Animal;
 import com.javarush.island.kavtasyev.entity.creatures.plants.Plant;
 import com.javarush.island.kavtasyev.entity.island.Cell;
+import com.javarush.island.kavtasyev.view.View;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,9 +55,9 @@ public class Feeding
 		try
 		{
 			if (cellCreatures.get(victim.getClass()).contains(victim)
-					&& victim.getLock().tryLock(IslandConfig.dayLength / 500, TimeUnit.MILLISECONDS))				// Если жертва не убежала в другую локацию и если лок жертвы удалось получить
+					&& victim.getLock().tryLock(IslandConfig.dayLength / 500, TimeUnit.MILLISECONDS))			// Если жертва не убежала в другую локацию и если лок жертвы удалось получить
 			{
-				if (GetRandom.RANDOM.nextInt(100) < foodMap.get(victim.getClass()))								// то тогда пытаемся поймать жертву.
+				if (GetRandom.RANDOM.nextInt(100) < foodMap.get(victim.getClass()))								// то тогда пытаемся поймать жертву. При положительном условии поймать жертву удалось и мы едим её.
 				{
 					if (victim instanceof Plant)
 					{
@@ -85,7 +86,11 @@ public class Feeding
 		finally
 		{
 			if (!victim.isAlive())																						// Если жертва мертва, то удаляем жертву из списков живых существ локации
+			{
+				View view = victim.getView();
+				view.deletePicture(victim);
 				cellCreatures.get(victim.getClass()).remove(victim);
+			}
 			victim.getLock().unlock();
 		}
 

@@ -6,7 +6,9 @@ import com.javarush.island.kavtasyev.entity.creatures.Creature;
 import com.javarush.island.kavtasyev.entity.creatures.animals.Animal;
 import com.javarush.island.kavtasyev.entity.island.Cell;
 import com.javarush.island.kavtasyev.exception.CreateObjectException;
+import com.javarush.island.kavtasyev.view.View;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -19,13 +21,14 @@ public class CreaturesFactory
 	private static final YAMLMapper MAPPER = new YAMLMapper();
 	private static final ThreadLocalRandom RANDOM = ThreadLocalRandom.current();
 
-	public static <T> T getInstance(Class<T> clazz, Cell currentCell) throws IOException, CreateObjectException
+	public static <T> T getInstance(Class<T> clazz, Cell currentCell, View view) throws IOException, CreateObjectException
 	{
 		String yamlFile = getYAMLPath(clazz);
 		T creature = MAPPER.readValue(readYAMLContent(yamlFile), clazz);
-		Image image = getImageForCreature(creature);
-		((Creature) creature).setImage(image);
+		ImageView imageView = getImageViewForCreature(creature);
+		((Creature) creature).setImageView(imageView);
 		((Creature) creature).setCurrentCell(currentCell);
+		((Creature) creature).setView(view);
 		setParameters((Creature) creature);
 		return creature;
 	}
@@ -58,7 +61,7 @@ public class CreaturesFactory
 		return yamlContent;
 	}
 
-	private static <T> Image getImageForCreature(T creature)
+	private static <T> ImageView getImageViewForCreature(T creature)
 	{
 		String s = ((Creature)creature).getImagePath();
 		Image image;
@@ -70,7 +73,7 @@ public class CreaturesFactory
 		{
 			throw new RuntimeException(e);
 		}
-		return image;
+		return new ImageView(image);
 	}
 
 	private static void setParameters(Creature creature)
@@ -87,8 +90,8 @@ public class CreaturesFactory
 	{
 		Creature newInstance = ((Animal) creature).clone();
 
-		Image image = getImageForCreature(newInstance);
-		newInstance.setImage(image);
+		ImageView imageView = getImageViewForCreature(newInstance);
+		newInstance.setImageView(imageView);
 		newInstance.setCurrentCell(creature.getCurrentCell());
 		setParameters(newInstance);
 		return newInstance;

@@ -9,6 +9,7 @@ import com.javarush.island.kavtasyev.util.IslandScheduler;
 import com.javarush.island.kavtasyev.util.Spawner;
 
 import java.io.IOException;
+import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.Exchanger;
 
 public class Application
@@ -25,24 +26,33 @@ public class Application
 
 	public void run()
 	{
-		CustomData customData = controller.getView().getCustomerParameters();
-		island = new Island(customData);
 		try
 		{
+			CustomData customData = controller.getView().getCustomerParameters();
+			island = new Island(customData);
+			spawnIslandCreatures();
+			controller.getView().setIsland(island);
+			controller.getView().synchronize();
 			startLivingProcess();
 		}
 		catch (CreateObjectException | IOException | InterruptedException e)											//TODO продумать, куда пробрасывать исключения
 		{
 			e.printStackTrace();
 		}
+		catch (BrokenBarrierException e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	private void spawnIslandCreatures() throws CreateObjectException, IOException
+	{
+		Spawner spawner = new Spawner(island, controller.getView());
+		spawner.spawnIslandCreatures();
 	}
 
 	public void startLivingProcess() throws CreateObjectException, IOException, InterruptedException
 	{
-		Spawner spawner = new Spawner(island);
-		spawner.spawnIslandCreatures();
-
-
 //		Cell[][] cells = island.getCells();
 //		HashSet<Creature> wolves = cells[5][4].getCellCreatures().get(Wolf.class);
 //		HashSet<Creature> rabbits = cells[5][4].getCellCreatures().get(Rabbit.class);
@@ -66,9 +76,8 @@ public class Application
 		IslandScheduler islandScheduler = new IslandScheduler(island, exchanger);
 
 		islandScheduler.startActivity();
-
-
 	}
+
 	public Statistics getStatistics()
 	{
 		try
@@ -82,7 +91,7 @@ public class Application
 		return statistics;
 	}
 
-	public void printStatistics(Statistics statistics)
+	public void printStatistics(Statistics statistics) throws InterruptedException
 	{
 		controller.getView().printStatistics(statistics);
 	}

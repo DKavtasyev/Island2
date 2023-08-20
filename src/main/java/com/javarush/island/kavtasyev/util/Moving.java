@@ -5,6 +5,7 @@ import com.javarush.island.kavtasyev.entity.creatures.animals.Herbivorous;
 import com.javarush.island.kavtasyev.entity.creatures.animals.Omnivorous;
 import com.javarush.island.kavtasyev.entity.creatures.animals.Predator;
 import com.javarush.island.kavtasyev.entity.island.Cell;
+import com.javarush.island.kavtasyev.view.View;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,9 @@ public class Moving
 			currentCell.getCellCreatures().get(thisCreature.getClass()).remove(thisCreature);
 			thisCreature.setCurrentCell(newCell);
 		}
+
+		View view = thisCreature.getView();
+		view.movePicture(thisCreature, oldCell);
 
 		if (thisCreature instanceof Predator)
 			thisCreature.setWantToEat(Math.min(thisCreature.getWantToEat() * 1.05, thisCreature.getMassOfFood()));		// Если животное - хищник, то оно тратит на перемещение 10 % энергии.

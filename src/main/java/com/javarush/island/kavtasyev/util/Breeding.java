@@ -4,6 +4,7 @@ import com.javarush.island.kavtasyev.config.IslandConfig;
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
 import com.javarush.island.kavtasyev.entity.island.Cell;
 import com.javarush.island.kavtasyev.factory.CreaturesFactory;
+import com.javarush.island.kavtasyev.view.View;
 
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -42,20 +43,26 @@ public class Breeding
 		if (pair == null)																								// Проверка на то, нашлась ли пара для размножения
 			return false;																								// Если не нашлась, то возвращаем false
 
+		Creature newCreature = null;
 		try																												// Если нашлась, то размножаемся с ней
 		{
 			currentCell = thisCreature.getCurrentCell();
-			Creature newCreature = CreaturesFactory.clone(thisCreature);
+			newCreature = CreaturesFactory.clone(thisCreature);
+			newCreature.getLock().lock();
 			newCreature.setAge(0);
 			newCreature.setWantToEat(0);
 			pair.setBred(true);
 			thisCreature.setBred(true);
 			currentCell.getCellCreatures().get(newCreature.getClass()).add(newCreature);								// TODO синхронизовать список животных для записи
+			View view = newCreature.getView();
+			view.showPicture(newCreature);
 			System.out.printf("Животное %1$s размножилось с животным %2$s. В результате размножения появилось животное %3$s.%n", thisCreature.getClass().getSimpleName() + thisCreature.hashCode(), pair.getClass().getSimpleName() + pair.hashCode(), newCreature.getClass().getSimpleName() + newCreature.hashCode());
 			return true;																								// Подтверждаем размножение, бежать в другую локацию искать пару не нужно
 		}
 		finally
 		{
+			if (newCreature != null)
+				newCreature.getLock().unlock();
 			if (pair.getLock().isHeldByCurrentThread())
 				pair.getLock().unlock();																					// Отпускаем пару после размножения
 		}

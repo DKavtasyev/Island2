@@ -8,7 +8,8 @@ import com.javarush.island.kavtasyev.exception.CreateObjectException;
 import com.javarush.island.kavtasyev.util.Breeding;
 import com.javarush.island.kavtasyev.util.Feeding;
 import com.javarush.island.kavtasyev.util.Moving;
-import javafx.scene.image.Image;
+import com.javarush.island.kavtasyev.view.View;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.lang.reflect.Constructor;
@@ -39,13 +40,15 @@ public abstract class Animal implements Creature, Cloneable
 	public double wantToEat;
 
 	@JsonIgnore
-	protected Image image;
+	protected ImageView imageView;
 	@JsonIgnore
 	protected Cell currentCell;
 	@JsonIgnore
 	protected final HashMap<Class<? extends Creature>, Integer> foodMap = new HashMap<>();
 	@JsonIgnore
 	public ReentrantLock lock = new ReentrantLock(true);
+	@JsonIgnore
+	private View view;
 
 	@Override
 	public void run()
@@ -98,6 +101,39 @@ public abstract class Animal implements Creature, Cloneable
 	}
 
 	@Override
+	@SuppressWarnings("all")
+	public Creature clone()
+	{
+		try
+		{
+			Class<? extends Creature> clazz = this.getClass();
+			Constructor<? extends Creature> constructor = clazz.getConstructor();
+			Animal newInstance = (Animal) constructor.newInstance();
+			newInstance.maxWeight = this.maxWeight;
+			newInstance.speed = this.speed;
+			newInstance.maxSpeed = this.maxSpeed;
+			newInstance.massOfFood = this.massOfFood;
+			newInstance.matureAge = this.matureAge;
+			newInstance.maxAge = this.maxAge;
+			newInstance.maxEnergy = this.maxEnergy;
+			newInstance.maxNumberPerCell = this.maxNumberPerCell;
+			newInstance.imagePath = this.imagePath;
+			newInstance.weight = this.weight;
+			newInstance.isAlive = true;
+			newInstance.energy = this.energy;
+			newInstance.isBred = false;
+			newInstance.view = this.view;
+			return newInstance;
+		}
+		catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
+			   InvocationTargetException e)
+		{
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
 	public String getImagePath()
 	{
 		return imagePath;
@@ -110,15 +146,15 @@ public abstract class Animal implements Creature, Cloneable
 	}
 
 	@Override
-	public void setImage(Image image)
+	public void setImageView(ImageView imageView)
 	{
-		this.image = image;
+		this.imageView = imageView;
 	}
 
 	@Override
-	public Image getImage()
+	public ImageView getImageView()
 	{
-		return image;
+		return imageView;
 	}
 
 	@Override
@@ -278,36 +314,14 @@ public abstract class Animal implements Creature, Cloneable
 	}
 
 	@Override
-	public Creature clone()
+	public void setView(View view)
 	{
-		try
-		{
-			Class<? extends Creature> clazz = this.getClass();
-			Constructor<? extends Creature> constructor = clazz.getConstructor();
-			Animal newInstance = (Animal) constructor.newInstance();
-			newInstance.maxWeight = this.maxWeight;
-			newInstance.speed = this.speed;
-			newInstance.maxSpeed = this.maxSpeed;
-			newInstance.massOfFood = this.massOfFood;
-			newInstance.matureAge = this.matureAge;
-			newInstance.maxAge = this.maxAge;
-			newInstance.maxEnergy = this.maxEnergy;
-			newInstance.maxNumberPerCell = this.maxNumberPerCell;
-			newInstance.imagePath = this.imagePath;
-			newInstance.weight = this.weight;
-			newInstance.isAlive = true;
-			newInstance.energy = this.energy;
-			newInstance.isBred = false;
-			return newInstance;
-		}
-		catch (NoSuchMethodException | InstantiationException | IllegalAccessException |
-			   InvocationTargetException e)
-		{
-			e.printStackTrace();
-		}
-		return null;
+		this.view = view;
+	}
+	@Override
+	public View getView()
+	{
+		return view;
 	}
 }
-
-//	protected static final HashSet<Class<? extends Creature>> enemies = new HashSet<>();
 

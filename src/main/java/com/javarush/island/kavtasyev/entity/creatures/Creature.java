@@ -1,17 +1,20 @@
 package com.javarush.island.kavtasyev.entity.creatures;
 
 import com.javarush.island.kavtasyev.entity.island.Cell;
-import javafx.scene.image.Image;
+import com.javarush.island.kavtasyev.view.View;
+import javafx.scene.image.ImageView;
 
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
 
 public interface Creature extends Runnable
 {
+	void setView(View view);
+
 	String getImagePath();
 	int getSpeed();
-	void setImage(Image image);
-	Image getImage();
+	void setImageView(ImageView imageView);
+	ImageView getImageView();
 	void setCurrentCell(Cell currentCell);
 	Cell getCurrentCell();
 	double getWeight();
@@ -38,6 +41,8 @@ public interface Creature extends Runnable
 	void setEnergy(int energy);
 	void setMale(boolean male);
 	HashMap<Class<? extends Creature>, Integer> getFoodMap();
+
+	View getView();
 }
 
 

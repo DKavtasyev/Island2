@@ -5,7 +5,8 @@ import com.javarush.island.kavtasyev.abstraction.Config;
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
 import com.javarush.island.kavtasyev.entity.island.Cell;
 import com.javarush.island.kavtasyev.exception.ParametersException;
-import javafx.scene.image.Image;
+import com.javarush.island.kavtasyev.view.View;
+import javafx.scene.image.ImageView;
 
 import java.util.HashMap;
 import java.util.concurrent.locks.ReentrantLock;
@@ -21,9 +22,11 @@ public class Plant implements Creature, Runnable
 	public String imagePath;
 
 	@JsonIgnore
-	protected Image image;
+	protected ImageView imageView;
 	@JsonIgnore
 	protected Cell currentCell;
+	@JsonIgnore
+	View view;
 
 	public ReentrantLock lock = new ReentrantLock(true);
 
@@ -40,6 +43,12 @@ public class Plant implements Creature, Runnable
 	}
 
 	@Override
+	public void setView(View view)
+	{
+		this.view = view;
+	}
+
+	@Override
 	public String getImagePath()
 	{
 		return imagePath;
@@ -52,15 +61,15 @@ public class Plant implements Creature, Runnable
 	}
 
 	@Override
-	public void setImage(Image image)
+	public void setImageView(ImageView imageView)
 	{
-		this.image = image;
+		this.imageView = imageView;
 	}
 
 	@Override
-	public Image getImage()
+	public ImageView getImageView()
 	{
-		return image;
+		return imageView;
 	}
 
 	@Override
@@ -211,6 +220,12 @@ public class Plant implements Creature, Runnable
 	public HashMap<Class<? extends Creature>, Integer> getFoodMap()
 	{
 		throw new ParametersException("Ошибка! Параметры съедаемой еды неприменимы к растениям!");
+	}
+
+	@Override
+	public View getView()
+	{
+		return view;
 	}
 
 	@Override

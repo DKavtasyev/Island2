@@ -7,6 +7,7 @@ import com.javarush.island.kavtasyev.entity.creatures.animals.Animal;
 import com.javarush.island.kavtasyev.entity.creatures.plants.Plant;
 import com.javarush.island.kavtasyev.entity.island.Cell;
 import com.javarush.island.kavtasyev.repository.SetOfCreaturesTypes;
+import com.javarush.island.kavtasyev.view.View;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -48,17 +49,24 @@ public class DeadsCollector implements Runnable
 					while(it.hasNext())
 					{
 						Creature creature = it.next();
+						View view;
 						if (creature == null)
+						{
 							it.remove();
-						else if (creature instanceof Animal)
-						{
-							if (!creature.isAlive() || creature.getAge() >= creature.getMaxAge())
-								it.remove();
 						}
-						else if (creature instanceof Plant)
+						else
 						{
-							if (!creature.isAlive() || creature.getWeight() == 0)
+							view = creature.getView();
+							if (creature instanceof Animal && (!creature.isAlive() || creature.getAge() >= creature.getMaxAge()))
+							{
+								view.deletePicture(creature);
 								it.remove();
+							}
+							else if (creature instanceof Plant && (!creature.isAlive() || creature.getWeight() == 0))
+							{
+								view.deletePicture(creature);
+								it.remove();
+							}
 						}
 					}
 				}

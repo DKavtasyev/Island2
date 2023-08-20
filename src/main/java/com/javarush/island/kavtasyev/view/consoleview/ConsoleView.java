@@ -4,8 +4,10 @@ import com.javarush.island.kavtasyev.config.IslandConfig;
 import com.javarush.island.kavtasyev.constants.Conversation;
 import com.javarush.island.kavtasyev.constants.Text;
 import com.javarush.island.kavtasyev.entity.CustomData;
+import com.javarush.island.kavtasyev.entity.Island;
 import com.javarush.island.kavtasyev.entity.Statistics;
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
+import com.javarush.island.kavtasyev.entity.island.Cell;
 import com.javarush.island.kavtasyev.util.ValidationCustomData;
 import com.javarush.island.kavtasyev.view.View;
 
@@ -110,5 +112,35 @@ public class ConsoleView implements View
 		System.out.print(statistics.getResult().getDayLoadTime());
 		System.out.print(statistics.getResult().getStatisticsTime());
 		System.out.print(statistics.getResult().getDayLength());
+	}
+
+	@Override
+	public void setIsland(Island island)
+	{
+		// Метод-заглушка. Данный метод нужен для GUIView.
+	}
+
+	@Override
+	public void synchronize()
+	{
+		// Метод-заглушка. Данный метод нужен для GUIView.
+	}
+
+	@Override
+	public void movePicture(Creature thisCreature, Cell oldCell)
+	{
+		// Метод-заглушка. Данный метод нужен для GUIView.
+	}
+
+	@Override
+	public void deletePicture(Creature creature)
+	{
+		// Метод-заглушка. Данный метод нужен для GUIView.
+	}
+
+	@Override
+	public void showPicture(Creature creature)
+	{
+		// Метод-заглушка. Данный метод нужен для GUIView.
 	}
 }

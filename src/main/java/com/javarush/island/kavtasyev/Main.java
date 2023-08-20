@@ -3,26 +3,36 @@ package com.javarush.island.kavtasyev;
 import com.javarush.island.kavtasyev.app.Application;
 import com.javarush.island.kavtasyev.controller.Controller;
 import com.javarush.island.kavtasyev.entity.Statistics;
+import com.javarush.island.kavtasyev.exception.CreateObjectException;
 import com.javarush.island.kavtasyev.view.View;
-import com.javarush.island.kavtasyev.view.consoleview.ConsoleView;
+import com.javarush.island.kavtasyev.view.guiview.GUIView;
+
+import java.io.IOException;
 
 public class Main
 {
 	// TODO Сделать ScheduleExecutor, который будет управлять параметрами всех животных
 
-	public static void main(String[] args) throws InterruptedException
+	public static void main(String[] args) throws InterruptedException, CreateObjectException, IOException
 	{
-		View view = new ConsoleView();
+		View view = new GUIView();
 		Controller controller = new Controller(view);
 		Application application = new Application(controller);
 		application.run();
 
 		while (true)
 		{
-			Statistics statistics = application.getStatistics();
-			application.printStatistics(statistics);
-			if (statistics.getPopulation() == 0)
-				break;
+			try
+			{
+				Statistics statistics = application.getStatistics();
+				application.printStatistics(statistics);
+				if (statistics.getPopulation() == 0)
+					break;
+			}
+			catch (InterruptedException e)
+			{
+				e.printStackTrace();
+			}
 		}
 
 

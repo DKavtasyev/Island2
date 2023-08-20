@@ -2,12 +2,13 @@ package com.javarush.island.kavtasyev.entity.island;
 
 import com.javarush.island.kavtasyev.entity.Coordinates;
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
+import javafx.scene.layout.StackPane;
 
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class Cell
+public class Cell extends StackPane
 {
 	private final Coordinates coordinates;
 	private final Cell[][] allCells;

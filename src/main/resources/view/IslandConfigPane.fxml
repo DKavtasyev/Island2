@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javarush.island.kavtasyev.controller.IslandConfigPaneController">
+<BorderPane maxHeight="400.0" maxWidth="600.0" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.javarush.island.kavtasyev.view.guiview.controller.IslandConfigPaneController">
    <bottom>
       <AnchorPane maxHeight="100.0" prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Button defaultButton="true" layoutX="383.0" layoutY="37.0" maxWidth="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#handleRun" prefWidth="70.0" text="Старт" AnchorPane.bottomAnchor="37.4" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="37.0">
+            <Button layoutX="383.0" layoutY="37.0" maxWidth="70.0" minWidth="70.0" mnemonicParsing="false" onAction="#handleRun" prefWidth="70.0" text="Старт" AnchorPane.bottomAnchor="37.4" AnchorPane.rightAnchor="120.0" AnchorPane.topAnchor="37.0">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
@@ -48,7 +48,7 @@
                   <Insets left="10.0" right="10.0" />
                </GridPane.margin>
             </Slider>
-            <Slider fx:id="dayLengthSlider" majorTickUnit="1.0" max="20.0" min="1.0" minorTickCount="0" nodeOrientation="LEFT_TO_RIGHT" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Slider fx:id="dayLengthSlider" majorTickUnit="1.0" max="10.0" min="1.0" minorTickCount="0" nodeOrientation="LEFT_TO_RIGHT" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor>

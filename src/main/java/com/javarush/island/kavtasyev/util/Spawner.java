@@ -10,6 +10,7 @@ import com.javarush.island.kavtasyev.exception.CreateObjectException;
 import com.javarush.island.kavtasyev.factory.CreaturesFactory;
 import com.javarush.island.kavtasyev.repository.CreaturePopulation;
 import com.javarush.island.kavtasyev.repository.SetOfCreaturesTypes;
+import com.javarush.island.kavtasyev.view.View;
 
 import java.io.IOException;
 
@@ -18,10 +19,12 @@ public class Spawner
 	private final Cell[][] cells;
 	private final int width;
 	private final int height;
+	private final View view;
 
-	public Spawner(Island island)
+	public Spawner(Island island, View view)
 	{
 		cells = island.getCells();
+		this.view = view;
 		this.width = island.getCustomData().getWidth();
 		this.height = island.getCustomData().getHeight();
 	}
@@ -42,12 +45,12 @@ public class Spawner
 			int population = CreaturePopulation.population.get(creatureClass.getSimpleName());
 			for (int i = 0; i < population; i++)
 			{
-				Creature creature = CreaturesFactory.getInstance(creatureClass, cells[y][x]);
+				Creature creature = CreaturesFactory.getInstance(creatureClass, cells[y][x], view);
 
 				if(creature instanceof Plant || creature instanceof Caterpillar)
 				{
-					int randomX = GetRandom.RANDOM.nextInt(width - 1);
-					int randomY = GetRandom.RANDOM.nextInt(height - 1);
+					int randomX = GetRandom.RANDOM.nextInt(width);
+					int randomY = GetRandom.RANDOM.nextInt(height);
 					cells[randomY][randomX].getCellCreatures().get(creatureClass).add(creature);
 				}
 				else

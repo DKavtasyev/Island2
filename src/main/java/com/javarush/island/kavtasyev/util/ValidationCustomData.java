@@ -17,7 +17,7 @@ public class ValidationCustomData
 		try
 		{
 			n = Integer.parseInt(width);
-			if (n >= 10 && n <= 200)
+			if (n >= IslandConfig.MIN_WIDTH && n <= IslandConfig.MAX_WIDTH)
 				return n;
 			else
 				return -1;
@@ -37,7 +37,7 @@ public class ValidationCustomData
 		try
 		{
 			n = Integer.parseInt(height);
-			if (n >= 5 && n <= 100)
+			if (n >= IslandConfig.MIN_HEIGHT && n <= IslandConfig.MAX_HEIGHT)
 				return n;
 			else
 				return -1;
@@ -57,7 +57,7 @@ public class ValidationCustomData
 		try
 		{
 			n = Long.parseLong(dayLength);
-			if (n >= 1 && n <= 10)
+			if (n >= IslandConfig.MIN_DAY_LENGTH / 1000 && n <= IslandConfig.MAX_DAY_LENGTH / 1000)
 				return n;
 			else
 				return -1;
