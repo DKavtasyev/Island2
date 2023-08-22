@@ -3,8 +3,6 @@ package com.javarush.island.kavtasyev.util;
 import com.javarush.island.kavtasyev.abstraction.Config;
 import com.javarush.island.kavtasyev.entity.Island;
 import com.javarush.island.kavtasyev.entity.creatures.Creature;
-import com.javarush.island.kavtasyev.entity.creatures.animals.herbivorous.Caterpillar;
-import com.javarush.island.kavtasyev.entity.creatures.plants.Plant;
 import com.javarush.island.kavtasyev.entity.island.Cell;
 import com.javarush.island.kavtasyev.exception.CreateObjectException;
 import com.javarush.island.kavtasyev.factory.CreaturesFactory;
@@ -47,14 +45,17 @@ public class Spawner
 			{
 				Creature creature = CreaturesFactory.getInstance(creatureClass, cells[y][x], view);
 
-				if(creature instanceof Plant || creature instanceof Caterpillar)
-				{
-					int randomX = GetRandom.RANDOM.nextInt(width);
-					int randomY = GetRandom.RANDOM.nextInt(height);
-					cells[randomY][randomX].getCellCreatures().get(creatureClass).add(creature);
-				}
-				else
-					cells[y][x].getCellCreatures().get(creatureClass).add(creature);
+				int randomX = GetRandom.RANDOM.nextInt(width);
+				int randomY = GetRandom.RANDOM.nextInt(height);
+				cells[randomY][randomX].getCellCreatures().get(creatureClass).add(creature);
+				creature.setCurrentCell(cells[randomY][randomX]);
+
+//				if(creature instanceof Plant || creature instanceof Caterpillar)
+//				{
+//
+//				}
+//				else
+//					cells[y][x].getCellCreatures().get(creatureClass).add(creature);
 			}
 		}
 	}

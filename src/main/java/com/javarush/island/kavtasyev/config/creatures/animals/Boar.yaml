@@ -4,7 +4,7 @@ speed: 2
 maxSpeed: 5
 massOfFood: 50
 matureAge: 6
-maxAge: 40
+maxAge: 400
 maxEnergy: 300
 maxNumberPerCell: 50
 imagePath: src/main/resources/img/icon/boar.png

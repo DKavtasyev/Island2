@@ -49,6 +49,12 @@ public class Application
 	{
 		Spawner spawner = new Spawner(island, controller.getView());
 		spawner.spawnIslandCreatures();
+//		for (int i = 0; i < 10; i++)
+//		{
+//			Caterpillar caterpillar = CreaturesFactory.getInstance(Caterpillar.class, island.getCells()[5][i + 3], controller.getView());
+//			island.getCells()[5][i + 3].getCellCreatures().get(Caterpillar.class).add(caterpillar);
+//		}
+
 	}
 
 	public void startLivingProcess() throws CreateObjectException, IOException, InterruptedException

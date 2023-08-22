@@ -4,7 +4,7 @@ speed: 3
 maxSpeed: 5
 massOfFood: 8
 matureAge: 5
-maxAge: 30
+maxAge: 300
 maxEnergy: 200
 maxNumberPerCell: 30
 imagePath: src/main/resources/img/icon/wolf.jpg

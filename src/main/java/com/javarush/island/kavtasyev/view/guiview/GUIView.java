@@ -31,7 +31,7 @@ public class GUIView implements View
 	@Override
 	public void printStatistics(Statistics statistics) throws InterruptedException
 	{
-//		GUIExchanger.statisticsExchanger.exchange(statistics);
+		GUIExchanger.statisticsExchanger.exchange(statistics);
 	}
 
 	@Override
@@ -50,18 +50,43 @@ public class GUIView implements View
 	@Override
 	public void movePicture(Creature thisCreature, Cell oldCell)
 	{
-		Platform.runLater(() -> CreatureViewer.moveCreaturePicture(thisCreature, oldCell));
+		Cell newCell = thisCreature.getCurrentCell();
+		Cell cell1;
+		Cell cell2;
+		if (oldCell.hashCode() < newCell.hashCode())
+		{
+			cell1 = oldCell;
+			cell2 = newCell;
+		}
+		else
+		{
+			cell1 = newCell;
+			cell2 = oldCell;
+		}
+		synchronized(cell1)
+		{
+			synchronized (cell2)
+			{
+				Platform.runLater(() -> CreatureViewer.moveCreaturePicture(thisCreature, oldCell));
+			}
+		}
 	}
 
 	@Override
 	public void deletePicture(Creature creature)
 	{
-		Platform.runLater(() -> CreatureViewer.deleteCreaturePicture(creature));
+		synchronized (creature.getCurrentCell())
+		{
+			Platform.runLater(() -> CreatureViewer.deleteCreaturePicture(creature));
+		}
 	}
 
 	@Override
 	public void showPicture(Creature creature)
 	{
-		Platform.runLater(() -> CreatureViewer.showCreaturePicture(creature));
+		synchronized (creature.getCurrentCell())
+		{
+			Platform.runLater(() -> CreatureViewer.showCreaturePicture(creature));
+		}
 	}
 }

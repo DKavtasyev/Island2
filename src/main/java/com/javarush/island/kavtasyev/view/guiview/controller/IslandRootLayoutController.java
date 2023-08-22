@@ -5,14 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-import javafx.stage.Stage;
 
 import java.util.Optional;
 
 public class IslandRootLayoutController
 {
 	private IslandMainApplication islandMainApplication;
-	private Stage statisticsStage;
 
 	@FXML
 	public void handleStatistics()
@@ -32,19 +30,8 @@ public class IslandRootLayoutController
 
 		alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeNo);
 		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == buttonTypeYes)
+		if (result.isPresent() && result.get() == buttonTypeYes)
 			System.exit(0);
-	}
-
-	@FXML
-	public void handleCloseStatistics()
-	{
-		statisticsStage.close();
-	}
-
-	public void setStatisticsStage(Stage statisticsStage)
-	{
-		this.statisticsStage = statisticsStage;
 	}
 
 	public void setIslandMainApplication(IslandMainApplication islandMainApplication)

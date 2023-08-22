@@ -56,7 +56,6 @@ public class CreatureParametersManager implements Runnable
 								if (creature.getWeight() < 1024)
 									creature.setWeight(creature.getWeight() * 2);
 							}
-
 						}
 					}
 				}

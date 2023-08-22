@@ -4,7 +4,7 @@ speed: 1
 maxSpeed: 2
 massOfFood: 3
 matureAge: 5
-maxAge: 30
+maxAge: 300
 maxEnergy: 100
 maxNumberPerCell: 30
 imagePath: src/main/resources/img/icon/boa.png

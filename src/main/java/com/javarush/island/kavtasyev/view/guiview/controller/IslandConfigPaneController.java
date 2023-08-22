@@ -88,6 +88,7 @@ public class IslandConfigPaneController
 		{
 			e.printStackTrace();
 		}
+		islandMainApplication.startMonitoringStatistics();
 	}
 
 	private void showSliderValue(TextField textField, Number newValue)

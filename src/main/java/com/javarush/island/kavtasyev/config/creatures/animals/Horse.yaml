@@ -4,7 +4,7 @@ speed: 4
 maxSpeed: 7
 massOfFood: 60
 matureAge: 7
-maxAge: 45
+maxAge: 450
 maxEnergy: 1000
 maxNumberPerCell: 20
 imagePath: src/main/resources/img/icon/horse.png

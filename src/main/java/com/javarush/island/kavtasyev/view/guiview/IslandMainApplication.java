@@ -6,8 +6,10 @@ import com.javarush.island.kavtasyev.entity.Statistics;
 import com.javarush.island.kavtasyev.entity.island.Cell;
 import com.javarush.island.kavtasyev.view.guiview.controller.IslandConfigPaneController;
 import com.javarush.island.kavtasyev.view.guiview.controller.IslandRootLayoutController;
+import com.javarush.island.kavtasyev.view.guiview.controller.IslandStatisticsLayoutController;
 import com.javarush.island.kavtasyev.view.guiview.util.CreatureViewer;
 import com.javarush.island.kavtasyev.view.guiview.util.GUIExchanger;
+import com.javarush.island.kavtasyev.view.guiview.util.StatisticsUpdater;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +20,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class IslandMainApplication extends Application
 {
@@ -25,7 +30,7 @@ public class IslandMainApplication extends Application
 	BorderPane islandRootLayout;
 	private Cell[][] cells;
 	Island island;
-	Statistics statistics;
+	Statistics statistics = new Statistics();
 
 	public IslandMainApplication()
 	{
@@ -83,6 +88,8 @@ public class IslandMainApplication extends Application
 			controller.setIslandMainApplication(this);
 
 			showIslandScene();
+			primaryStage.centerOnScreen();
+			primaryStage.centerOnScreen();
 		}
 		catch (IOException e)
 		{
@@ -106,8 +113,8 @@ public class IslandMainApplication extends Application
 			islandRootLayout.setCenterShape(true);																		// Центрирует форму в пределах области width, height
 			primaryStage.setWidth(IslandConfig.sceneWidth);
 			primaryStage.setHeight(IslandConfig.sceneHeight + 100 + 25);
-			primaryStage.setResizable(false);
 			primaryStage.centerOnScreen();
+			primaryStage.setResizable(false);
 		}
 		catch (Exception e)
 		{
@@ -121,17 +128,19 @@ public class IslandMainApplication extends Application
 		{
 			URL fxmlLocation = IslandMainApplication.class.getResource("/view/IslandStatisticsLayout.fxml");
 			FXMLLoader loader = new FXMLLoader(fxmlLocation);
-			Pane islandConfigLayout = loader.load();
+			Pane islandStatisticsLayout = loader.load();
 
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Параметры");
+			dialogStage.setTitle("Статистика");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(primaryStage);
-			Scene scene = new Scene(islandConfigLayout);
+			Scene scene = new Scene(islandStatisticsLayout);
 			dialogStage.setScene(scene);
 
-			IslandRootLayoutController controller = loader.getController();
+			IslandStatisticsLayoutController controller = loader.getController();
 			controller.setStatisticsStage(dialogStage);
+
+			controller.setCreaturesData(statistics);
 
 			dialogStage.showAndWait();
 		}
@@ -160,5 +169,23 @@ public class IslandMainApplication extends Application
 	public Cell[][] getCells()
 	{
 		return cells;
+	}
+
+	public void startMonitoringStatistics()
+	{
+
+		StatisticsUpdater statisticsUpdater = new StatisticsUpdater(this);
+		ScheduledExecutorService statisticsUpdaterExecutor = new ScheduledThreadPoolExecutor(1);
+		statisticsUpdaterExecutor.scheduleAtFixedRate(statisticsUpdater, 0, IslandConfig.dayLength, TimeUnit.MILLISECONDS);
+	}
+
+	public Statistics getStatistics()
+	{
+		return statistics;
+	}
+
+	public void setStatistics(Statistics statistics)
+	{
+		this.statistics = statistics;
 	}
 }

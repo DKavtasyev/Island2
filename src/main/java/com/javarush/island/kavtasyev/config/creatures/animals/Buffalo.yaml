@@ -4,7 +4,7 @@ speed: 3
 maxSpeed: 7
 massOfFood: 100
 matureAge: 7
-maxAge: 45
+maxAge: 450
 maxEnergy: 1000
 maxNumberPerCell: 10
 imagePath: src/main/resources/img/icon/buffalo.png
